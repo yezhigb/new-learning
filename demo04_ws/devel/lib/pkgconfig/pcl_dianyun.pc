@@ -1,0 +1,8 @@
+prefix=/home/yezhi_gb/demo04_ws/devel
+
+Name: pcl_dianyun
+Description: Description of pcl_dianyun
+Version: 0.0.1
+Cflags: -I/home/yezhi_gb/demo04_ws/src/pcl_dianyun/include
+Libs: -L${prefix}/lib -lpcl_dianyun
+Requires: roscpp rospy std_msgs pcl_ros sensor_msgs tf pcl_conversions interactive_markers visualization_msgs

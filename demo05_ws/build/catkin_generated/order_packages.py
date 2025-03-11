@@ -1,0 +1,5 @@
+# generated from catkin/cmake/template/order_packages.context.py.in
+source_root_dir = '/home/yezhi_gb/demo05_ws/src'
+whitelisted_packages = ''.split(';') if '' != '' else []
+blacklisted_packages = ''.split(';') if '' != '' else []
+underlay_workspaces = '/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_sensors;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_python;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_msgs;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_firmware;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_controllers;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix;/home/yezhi_gb/demo05_ws/devel_isolated/urdf01_rviz;/home/yezhi_gb/demo05_ws/devel;/opt/ros/noetic'.split(';') if '/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_sensors;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_python;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_msgs;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_firmware;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix_controllers;/home/yezhi_gb/demo05_ws/devel_isolated/arbotix;/home/yezhi_gb/demo05_ws/devel_isolated/urdf01_rviz;/home/yezhi_gb/demo05_ws/devel;/opt/ros/noetic' != '' else []

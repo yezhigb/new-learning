@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pcl_dianyun</name>
+  <version>0.0.1</version>
+  <description>The pcl_dianyun package</description>
+
+  <maintainer email="your_email@domain.com">Your Name</maintainer>
+  <license>BSD</license>
+
+  <!-- Runtime dependencies -->
+  <depend>std_msgs</depend>
+  <depend>rospy</depend>
+  <depend>roscpp</depend>
+  <!-- <depend>pcl_conversions</depend> -->
+  <!-- <depend>visualization_msgs</depend> -->
+
+  <!-- Add other dependencies here -->
+  <depend>pcl_ros</depend>
+  <depend>sensor_msgs</depend>  <!-- If using sensor_msgs for PointCloud2 -->
+  <depend>tf</depend>  <!-- If using tf for transformation -->
+  
+  <!-- Build dependencies (optional) -->
+  <build_depend>pcl_conversions</build_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>interactive_markers</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <!-- <build_depend>pcl_conversions</build_depend>  If converting between PCL and ROS messages -->
+  <exec_depend>interactive_markers</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
+  <exec_depend>pcl_conversions</exec_depend>
+  <!-- Test dependencies (optional) -->
+  <test_depend>rostest</test_depend>
+
+</package>

@@ -1,0 +1,36 @@
+<robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- 雷达 -->
+  <gazebo reference="laser">
+    <sensor type="ray" name="rplidar">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5.5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>  <!-- 分辨率，每n条线测一次 -->
+            <min_angle>-3</min_angle>
+            <max_angle>3</max_angle>  <!-- 设置雷达采样角度范围 -->
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>  <!-- 设置雷达采样距离范围 -->
+          <resolution>0.01</resolution>  <!-- 采样精度 -->
+        </range>
+        <noise>  
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>  <!-- 高斯噪音，仿真用，模拟误差 -->
+      </ray>
+      <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>  <!-- 发布时的话题名名称 -->
+        <frameName>laser</frameName>  <!-- 与连杆名称相同 -->
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

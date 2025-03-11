@@ -1,0 +1,8 @@
+<launch>
+    <!-- <node pkg="map_server" type="map_server" name="map_server" args="$(find nav_demo)/map/nav.yaml" /> -->
+
+    <!-- 或者用下面的代码 -->
+    <arg name="map" default="nav.yaml" />
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find nav_demo)/map/$(arg map)" />
+
+</launch>

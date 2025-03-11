@@ -1,0 +1,140 @@
+<robot name="mycar" xmlns:xacro="http://wiki.ros.org/xacro" >
+    
+    <xacro:property name="footprint_radius" value="0.001" />
+
+    <!-- 1.添加 base_footprint -->
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="${footprint_radius}" />
+            </geometry>
+        </visual>
+    </link>
+
+
+    <!-- 2.添加底盘 -->
+    <!-- 
+        形状：圆柱
+        半径：0.1m
+        高度：0.08m
+        离地间距：0.015m
+     -->
+    <xacro:property name="base_radius" value="0.1" />
+    <xacro:property name="base_length" value="0.08" />
+    <xacro:property name="lidi_space" value="0.015" />
+    <xacro:property name="base_joint_z" value="${base_length / 2 + lidi_space}" />
+
+    <!-- 2-1 link -->
+    <link name="base_link" >
+        <visual>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_length}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="baselink_color" >
+                <color rgba="1 0.5 0.2 0.7" />
+            </material>
+        </visual>
+    </link>
+    <!-- 2-2 joint -->
+    <joint name="link2footprint" type="fixed" >
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <!-- 关节z上的设置 = 车体高度/2 + 离地间距 -->
+        <origin xyz="0 0 ${base_joint_z}" rpy="0 0 0" />
+    </joint>
+
+
+    <!-- 3.添加驱动轮 -->
+    <!-- 
+        形状:圆柱
+        半径:0.0325m
+        长度:0.015m
+     -->
+    <xacro:property name="wheel_radius" value="0.0325" />
+    <xacro:property name="wheel_length" value="0.015" />
+    <xacro:property name="PI" value="3.1415927" />
+    <xacro:property name="y_origin" value="0.1" />
+    <!-- 注意：结果是负数 -->
+    <xacro:property name="wheel_joint_z" value="${ (base_length / 2 + lidi_space - wheel_radius) * (-1)}" />
+    
+    <!-- 
+        wheel_name : left 或 right
+        flag : 1 或 -1
+     -->
+    <xacro:macro name="wheel_func" params="wheel_name flag" > 
+
+        <!-- 3-1 link -->
+        <link name="${wheel_name}_wheel" >
+            <visual>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+                </geometry>
+                <origin xyz="0 0 0" rpy="${PI / 2} 0 0" />
+                <material name="wheel_color" >
+                    <color rgba="0 0 0 0.6" />
+                </material>
+            </visual>
+        </link>
+
+        
+        <!-- 3-2 joint -->
+        <joint name="${wheel_name}2link" type="continuous" >
+            <parent link="base_link" />
+            <child link="${wheel_name}_wheel" />
+            <!-- 
+                x = 0
+                y = 底盘半径 = 0.1m
+                z = 底盘中心点离地高度 - 左轮中心点离地高度 = 0.04 + 0.015 - 0.0325 = 0.0225m 取负值
+            -->
+            <origin xyz="0 ${y_origin * flag} ${wheel_joint_z}" rpy="0 0 0" />
+            <axis xyz="0 1 0" />
+        </joint>
+
+    </xacro:macro>
+
+    <xacro:wheel_func wheel_name="left" flag="1"/>
+    <xacro:wheel_func wheel_name="right" flag="-1"/>
+
+
+    <!-- 4.添加万向轮 -->
+    <!-- 
+        形状:球
+        半径:0.0075m
+     -->
+    <xacro:property name="small_wheel_radius" value="0.0075" />
+    <xacro:property name="x_origin" value="0.08" />
+    <xacro:property name="small_joint_z" value="${(base_length / 2 + lidi_space - small_wheel_radius) * (-1)}" />
+
+    <xacro:macro name="samll_wheel_func" params="small_wheel_name flag" >
+        <!-- 4-1 link -->
+        <link name="${small_wheel_name}_wheel" >
+            <visual>
+                <geometry>
+                    <sphere radius="${small_wheel_radius}" />
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <material name="wheel_color" >
+                    <color rgba="0 0 0 0.6" />
+                </material>
+            </visual>
+        </link>
+
+        <!-- 4-2 joint -->
+        <joint name="${small_wheel_name}2link" type="continuous" >
+            <parent link="base_link" />
+            <child link="${small_wheel_name}_wheel" />
+            <!-- 
+                x = 小于底盘半径 = 0.08m
+                y = 0
+                z = 底盘中心点离地高度 - 前轮中心点离地高度 = 0.04 + 0.015 - 0.0075 = 0.0475m 取负值
+            -->
+            <origin xyz="${x_origin * flag} 0 ${small_joint_z}" rpy="0 0 0" />
+            <axis xyz="1 1 1" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:samll_wheel_func small_wheel_name="front" flag="1" />
+    <xacro:samll_wheel_func small_wheel_name="back" flag="-1" />
+
+</robot>

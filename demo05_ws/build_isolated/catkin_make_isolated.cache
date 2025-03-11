@@ -1,0 +1,2 @@
+arbotix_ros-noetic-devel/arbotix:arbotix_ros-noetic-devel/arbotix_controllers:arbotix_ros-noetic-devel/arbotix_firmware:arbotix_ros-noetic-devel/arbotix_msgs:arbotix_ros-noetic-devel/arbotix_python:arbotix_ros-noetic-devel/arbotix_sensors:urdf01_rviz
+-DCMAKE_BUILD_TYPE=RelWithDebInfo -G Unix Makefiles -DCATKIN_DEVEL_PREFIX=/home/yezhi_gb/demo05_ws/devel_isolated -DCMAKE_INSTALL_PREFIX=/home/yezhi_gb/demo05_ws/install_isolated
