@@ -1,0 +1,23 @@
+bg_B: 255
+bg_G: 50
+bg_R: 100
+my_turtle:
+  background_b: 255
+  background_g: 86
+  background_r: 69
+  bg_B: 255
+  bg_G: 50
+  bg_R: 100
+  param_B: 3.14
+param_A: 100
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_yezhi__41229: http://yezhi:41229/
+    host_yezhi__44239: http://yezhi:44239/
+rosversion: '1.16.0
+
+  '
+run_id: dc411e18-ce7d-11ef-88dd-07cb955efe88
